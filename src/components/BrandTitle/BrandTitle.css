@@ -1,0 +1,15 @@
+.brand-title {
+  font-family: var(--font-family-tight);
+  font-size: var(--hero-title-size);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--hero-title-tracking);
+  text-wrap: balance;
+  margin: 0;
+}
+
+.brand-title__initial {
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-normal);
+}

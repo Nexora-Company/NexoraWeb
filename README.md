@@ -12,7 +12,9 @@ Responsabilidad única: presentar el catálogo oficial (skill `product-catalog`)
 
 ```
 src/
-  components/  Header/ Hero/ BrandTitle/ Footer/
+  components/  BrandTitle/
+  layouts/     Header/ Footer/
+  sections/    Hero/
   content/     site/ home/
   hooks/       useTheme.js
   pages/       Home/

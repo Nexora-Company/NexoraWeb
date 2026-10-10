@@ -33,16 +33,17 @@ Neutros    0 #ffffff · 50 #fbfbfd · 100 #f5f5f7 · 150 #eeeef0
            600 #6b6b74 · 750 #42424a · 950 #0a0a0c
            tinta #1d1d1f · niebla #e8e8ed · bruma #d7d7dc · ceniza #a9a9b3 · linea #d9d9de
 Superficies 300 #0a0a0c · 400 #141417 · 450 #1c1c21 · 500 #24252a · 600 #2c2d33
-Marca      500 #a50021 · 600 #84001a · on-dark #ff453a
-Enlace     #0071e3 · on-dark #2997ff · velo rgb(0 113 227 / 0.08)
+Marca      500 #a50021 · 600 #84001a · on-dark #ff453a · velo claro rgb(165 0 33 / 0.08) · velo oscuro rgb(255 69 58 / 0.14)
 ```
+
+**Nada de azul en el proyecto.** Enlaces, foco y botones usan el brand rojo: `--color-link` y `--color-focus-ring` resuelven a `--palette-brand-500` en claro y `--palette-brand-on-dark` en oscuro. `.btn--primary` es fondo `--color-brand` con texto `--color-text-on-brand`; `.btn--secondary` es texto `--color-brand-text` con borde y velo `--color-brand-veil` al hover.
 
 ### Acentos por producto
 
 Cada familia del catálogo oficial y cada software tiene un acento. El acento nunca se escribe en el componente: se declara con un token `--product-*` y el CSS lo resuelve.
 
 ```
-nphone #0071e3   nexabook #6e6e73   nexatab #5856d6
+nphone #a50021   nexabook #6e6e73   nexatab #5856d6
 nexawatch #ff9f0a   nexapods #30d158
 ncode   #0f766e   ncloud  #0891b2   nexora-one #a50021
 ```
@@ -85,7 +86,7 @@ Base y titulares se cargan desde Google Fonts en `index.html` con `preconnect`. 
 
 ### La "N" en Gliker
 
-Todo titular de heroe cuyo producto empiece por `N` (NPhone, NexaBook, NexaTab, NexaWatch, NexaPods) envuelve su primera letra en `.brand-title__initial`, que usa `--font-family-display`. El resto del titular sigue en `--font-family-tight`. Componente `BrandTitle`: recibe `text` y decide solo; el JSX nunca parte el texto a mano.
+Todo titular de heroe cuyo producto empiece por `N` (NPhone, NexaBook, NexaTab, NexaWatch, NexaPods) envuelve su primera letra en `.brand-title__initial`, que usa `--font-family-display`. El resto del titular —incluidas palabras como `Ultra`, `Plus` o `Max`— sigue en `--font-family-tight`. Componente `BrandTitle`: recibe `text` y decide solo; el JSX nunca parte el texto a mano.
 
 ### Escala
 
@@ -161,27 +162,32 @@ Reglas: el desenfoque va entre **16 y 24px** (`--blur-lg: 20px`); el `saturate` 
 
 `--header-height` (64px). El encabezado es fijo (`sticky`), con `backdrop-filter` y fondo translúcido. Estructura fija en tres zonas con `grid-template-columns: 1fr auto 1fr`:
 
-- Izquierda: logotipo Nexora (marca `N` en Gliker + texto).
+- Izquierda: logotipo Nexora (SVG local `nexora-mark.svg` + texto). Texto y enlaces usan la misma familia y el mismo tamaño (`--header-logo-size` = `--header-link-size`).
 - Centro: enlaces de familias del catálogo (NPhone, NexaBook, NexaTab, NexaWatch, NexaPods) más Accesorios y Soporte.
-- Derecha: lupa (buscar) + bolsa (compra) + toggle de tema (Sol/Luna). Iconos siempre de `lucide-react` (`Search`, `ShoppingBag`, `Sun`, `Moon`, `Menu`, `X`).
+- Derecha: lupa (buscar) + bolsa (compra) + toggle de tema (Sol/Luna), con `justify-self: end`. Iconos siempre de `lucide-react` (`Search`, `ShoppingBag`, `Sun`, `Moon`, `Menu`, `X`, `ChevronLeft`).
+
+Cada enlace abre su menú desde `src/content/site/navMenus.content.js`:
+
+- Escritorio: mega-panel de tres columnas (Explorar / Comprar / Más de) bajo el header; se cierra con Escape, clic fuera o al navegar.
+- Móvil (< `--header-mobile-breakpoint`): botón hamburguesa abre overlay a pantalla completa con los enlaces en grande; tocar uno abre su subvista (atrás + cerrar, grupos con etiquetas pequeñas y enlaces destacados). Bloquea el scroll con `body overflow hidden`.
 
 En móvil (< `--header-mobile-breakpoint`) los enlaces colapsan en un menú hamburguesa desplegable; las tres acciones de la derecha siempre visibles.
 
 ### Hero de portada (estética Nexora, referencia Apple)
 
-Tres variantes, todas en `src/components/Hero/`:
+Tres variantes, todas en `src/sections/Hero/`:
 
-- `.hero--classic` (fondo oscuro fijo): título + descripción + botones + imagen. Para NPhone, NexaBook, NexaTab y NexaPods.
-- `.hero--upcoming` (fondo claro fijo): título + descripción + nota de lanzamiento (reserva/disponibilidad) + botones + imagen.
-- `.hero--watch` (fondo oscuro fijo): título + imagen + descripción + botones.
+- `.hero--classic` (título + descripción + botones + imagen): **sin margin ni padding inferior** (`--hero-classic-padding-bottom: 0`), solo lados y arriba. Para NPhone, NexaBook, NexaTab y NexaPods. Las secciones se apilan sin separación (`--hero-section-gap: 0`).
+- `.hero--upcoming` (título + descripción + nota de lanzamiento + botones + imagen).
+- `.hero--watch` (título + imagen + descripción + botones).
 
-El fondo del hero es intencional e independiente del tema global: el classic/watch siempre oscuros, el upcoming siempre claro. Los tokens viven en `tokens.hero.css` (`--hero-dark-*`, `--hero-light-*`).
+Los tres responden al tema global mediante tokens semánticos (`--hero-*-bg`, `--hero-*-title`, etc. en `tokens.hero.css`): nada de fondos fijos oscuros/claros.
 
 Imágenes: hasta tener activos propios, solo Unsplash (`images.unsplash.com` con `?q=80&w=1800&auto=format&fit=crop`) con `alt` descriptivo en español desde el content. Nada de Pinterest con hotlink inestable.
 
 ### Pie (estética Nexora, referencia Apple)
 
-`tokens.footer.css`. Estructura: notas legales → columnas de enlaces → formas de comprar → país → copyright + enlaces legales. Columnas adaptadas a Nexora (Compra y descubre, Cuenta, Nexora Store, Para empresas y educación, Valores de Nexora, Acerca de Nexora). En móvil (< `--footer-accordion-breakpoint`) cada columna es un acordeón con `aria-expanded`; en escritorio, rejilla `auto-fit minmax(10rem, 1fr)`.
+`tokens.footer.css`. Estructura: notas legales → columnas de enlaces → formas de comprar → copyright + enlaces legales. Sin selector de país: Nexora es una empresa colombiana (precios en COP, teléfono 01 8000, copyright `Nexora S.A.S.`). Columnas adaptadas a Nexora (Explorar, Soporte, Compañía, Para empresas y educación, Valores de Nexora, Cuenta): nada de items open-source (API, Estado, Comunidad). El bloque legal muestra solo Política de privacidad, Términos de uso y Ventas y reembolsos. En móvil (< `--footer-accordion-breakpoint`) cada columna es un acordeón con `aria-expanded`; en escritorio, rejilla `auto-fit minmax(10rem, 1fr)`.
 
 ### Foco y estados
 
@@ -305,7 +311,8 @@ El diseño evita la columna centrada de ancho fijo. Se compone con:
 
 ## 6. Contenido
 
-1. **Ningún texto visible en el JSX.** Todo el copy vive en `src/content/`, organizado por dominio (`site/`, `home/`, y un directorio por página nueva). **Cada sección, layout y componente tiene su propio `.js` de contenido** (p. ej. `header.content.js`, `footer.content.js`, `heroNPhone.content.js`): el JSX solo importa y renderiza.
+1. **Ningún texto visible en el JSX.** Todo el copy vive en `src/content/`, organizado por dominio (`site/`, `home/`, y un directorio por página nueva). **Cada sección, layout y componente tiene su propio `.js` de contenido** (p. ej. `header.content.js`, `navMenus.content.js`, `footer.content.js`, `heroNPhone.content.js`): el JSX solo importa y renderiza.
+2. Estructura de carpetas: `src/components/` (piezas: BrandTitle), `src/layouts/` (Header, Footer), `src/sections/` (Hero), `src/pages/` (Home). Nada de layouts dentro de `components/`.
 2. Los iconos vienen de `lucide-react`. Los logotipos de marca (redes sociales) siguen siendo SVG en línea porque la librería los retiró.
 3. Los datos de producto (versión, estado, gamas) son declarativos y se derivan, no se repiten en varios sitios.
 4. Todo texto de interfaz, **en español**.

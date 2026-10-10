@@ -1,21 +1,18 @@
-/* Tokens del header: topbar solida full-bleed, iconos y menus. */
+/* Tokens del header: topbar solida centrada, iconos y overlay movil. */
 
 :root {
   --header-link-size: var(--font-size-sm);
-  --header-logo-size: var(--font-size-sm);
   --header-mark-size: 1.375rem;
+  --header-inner-max: var(--container-desktop);
+  --header-inner-gap: var(--space-6);
   --header-link-gap: var(--space-5);
   --header-icon-size: 1.25rem;
   --header-action-gap: var(--space-1);
   --header-action-size: 2.75rem;
   --header-mobile-breakpoint: 56.25rem;
 
-  --nav-panel-bg: var(--color-surface-elevated);
-  --nav-panel-pad: var(--space-8);
   --nav-group-label-size: var(--font-size-sm);
   --nav-group-link-size: var(--font-size-2xl);
-  --nav-quick-link-size: var(--font-size-sm);
-  --nav-column-gap: var(--space-10);
   --nav-overlay-link-size: var(--font-size-2xl);
   --nav-overlay-quick-size: var(--font-size-base);
 }

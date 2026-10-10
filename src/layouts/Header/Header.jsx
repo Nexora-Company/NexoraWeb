@@ -1,58 +1,45 @@
-import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, Hexagon, Menu, Moon, Search, ShoppingBag, Sun, X } from "lucide-react";
-import { headerContent } from "../../content/site/header.content.js";
-import { metaContent } from "../../content/site/meta.content.js";
-import { navMenusContent } from "../../content/site/navMenus.content.js";
-import "./Header.css";
+import { useEffect, useState } from 'react'
+import { ChevronLeft, Hexagon, Menu, Moon, Search, ShoppingBag, Sun, X } from 'lucide-react'
+import { headerContent } from '../../content/site/header.content.js'
+import { metaContent } from '../../content/site/meta.content.js'
+import { navMenusContent } from '../../content/site/navMenus.content.js'
+import './Header.css'
 
 export function Header({ theme, onToggleTheme }) {
-  const [openMenu, setOpenMenu] = useState(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileMenu, setMobileMenu] = useState(null);
-  const rootRef = useRef(null);
-  const isDark = theme === "dark";
-  const toggleLabel = isDark ? metaContent.themeLabels.toLight : metaContent.themeLabels.toDark;
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileMenu, setMobileMenu] = useState(null)
+  const isDark = theme === 'dark'
+  const toggleLabel = isDark ? metaContent.themeLabels.toLight : metaContent.themeLabels.toDark
 
   useEffect(() => {
-    function onPointerDown(event) {
-      if (rootRef.current && !rootRef.current.contains(event.target)) setOpenMenu(null);
-    }
     function onKeyDown(event) {
-      if (event.key === "Escape") {
-        setOpenMenu(null);
-        setMobileOpen(false);
-        setMobileMenu(null);
+      if (event.key === 'Escape') {
+        setMobileOpen(false)
+        setMobileMenu(null)
       }
     }
-    document.addEventListener("mousedown", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener('keydown', onKeyDown)
     return () => {
-      document.removeEventListener("mousedown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, []);
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [])
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+      document.body.style.overflow = ''
+    }
+  }, [mobileOpen])
 
   function closeMobile() {
-    setMobileOpen(false);
-    setMobileMenu(null);
+    setMobileOpen(false)
+    setMobileMenu(null)
   }
 
-  const activeMenu = openMenu ? navMenusContent[openMenu] : null;
-  const mobileMenuContent = mobileMenu ? navMenusContent[mobileMenu] : null;
+  const mobileMenuContent = mobileMenu ? navMenusContent[mobileMenu] : null
 
   return (
-    <header
-      className="site-header"
-      ref={rootRef}
-      onMouseLeave={() => setOpenMenu(null)}
-    >
+    <header className="site-header">
       <div className="site-header__inner">
         <a
           className="site-header__logo"
@@ -60,23 +47,13 @@ export function Header({ theme, onToggleTheme }) {
           aria-label={headerContent.logo.ariaLabel}
         >
           <Hexagon className="site-header__mark" aria-hidden="true" />
-          {headerContent.logo.text}
         </a>
 
         <nav className="site-header__nav" aria-label={headerContent.nav.ariaLabel}>
           {headerContent.nav.links.map((link) => (
-            <button
-              key={link.label}
-              type="button"
-              className={`site-header__link ${openMenu === link.menuId ? "is-active" : ""}`}
-              aria-expanded={openMenu === link.menuId}
-              aria-haspopup="true"
-              onMouseEnter={() => setOpenMenu(link.menuId)}
-              onFocus={() => setOpenMenu(link.menuId)}
-              onClick={() => setOpenMenu((prev) => (prev === link.menuId ? null : link.menuId))}
-            >
+            <a key={link.label} className="site-header__link" href={link.href}>
               {link.label}
-            </button>
+            </a>
           ))}
         </nav>
 
@@ -114,41 +91,34 @@ export function Header({ theme, onToggleTheme }) {
         </div>
       </div>
 
-      {activeMenu && (
-        <div className="nav-panel">
-          <div className="container nav-panel__inner">
-            {activeMenu.groups.map((group) => (
-              <div key={group.label} className="nav-panel__column">
-                <p className="nav-panel__label">{group.label}</p>
-                <ul className={group.featured ? "nav-panel__links nav-panel__links--featured" : "nav-panel__links"}>
-                  {group.links.map((item) => (
-                    <li key={item.label}>
-                      <a href={item.href} onClick={() => setOpenMenu(null)}>
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
       {mobileOpen && (
-        <div className="nav-overlay" role="dialog" aria-modal="true" aria-label={headerContent.nav.ariaLabel}>
+        <div
+          className="nav-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label={headerContent.nav.ariaLabel}
+        >
           <div className="nav-overlay__top">
             {mobileMenuContent ? (
-              <button type="button" className="nav-overlay__icon-btn" onClick={() => setMobileMenu(null)} aria-label={headerContent.nav.backLabel}>
+              <button
+                type="button"
+                className="nav-overlay__icon-btn"
+                onClick={() => setMobileMenu(null)}
+                aria-label={headerContent.nav.backLabel}
+              >
                 <ChevronLeft aria-hidden="true" />
               </button>
             ) : (
-              <span className="nav-overlay__top-logo">
+              <span className="nav-overlay__top-logo" aria-hidden="true">
                 <Hexagon aria-hidden="true" />
-                {headerContent.logo.text}
               </span>
             )}
-            <button type="button" className="nav-overlay__icon-btn" onClick={closeMobile} aria-label={headerContent.nav.closeLabel}>
+            <button
+              type="button"
+              className="nav-overlay__icon-btn"
+              onClick={closeMobile}
+              aria-label={headerContent.nav.closeLabel}
+            >
               <X aria-hidden="true" />
             </button>
           </div>
@@ -170,7 +140,13 @@ export function Header({ theme, onToggleTheme }) {
               {mobileMenuContent.groups.map((group) => (
                 <div key={group.label} className="nav-overlay__group">
                   <p className="nav-overlay__label">{group.label}</p>
-                  <ul className={group.featured ? "nav-overlay__links nav-overlay__links--featured" : "nav-overlay__links"}>
+                  <ul
+                    className={
+                      group.featured
+                        ? 'nav-overlay__links nav-overlay__links--featured'
+                        : 'nav-overlay__links'
+                    }
+                  >
                     {group.links.map((item) => (
                       <li key={item.label}>
                         <a href={item.href} onClick={closeMobile}>
@@ -186,5 +162,5 @@ export function Header({ theme, onToggleTheme }) {
         </div>
       )}
     </header>
-  );
+  )
 }

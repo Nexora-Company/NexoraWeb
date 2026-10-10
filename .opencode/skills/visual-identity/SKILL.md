@@ -160,16 +160,13 @@ Reglas: el desenfoque va entre **16 y 24px** (`--blur-lg: 20px`); el `saturate` 
 
 ### Navegación flotante
 
-`--header-height` (64px). La topbar es sólida (`--color-surface`), sin blur ni translucidez, y full-bleed: ocupa todo el ancho con gutters laterales, sin `.container`. Estructura flex en tres zonas:
+`--header-height` (64px). La topbar es sólida (`--color-surface`), sin blur ni translucidez. El inner está centrado con `max-width: var(--header-inner-max)` y en escritorio todo el conjunto (logo + nav + acciones) va centrado con `justify-content: center`; en móvil, logo a la izquierda y acciones a la derecha con `justify-content: space-between`.
 
-- Izquierda: logotipo Nexora (icono `Hexagon` de lucide-react en brand + texto). Texto y enlaces usan la misma familia y el mismo tamaño (`--header-logo-size` = `--header-link-size`).
-- Centro: enlaces de familias del catálogo (NPhone, NexaBook, NexaTab, NexaWatch, NexaPods) más Accesorios y Soporte, con `margin-inline: auto`.
-- Derecha: lupa (buscar) + bolsa (compra) + toggle de tema (Sol/Luna), con `margin-inline-start: auto` para quedar siempre pegadas al borde derecho. Iconos siempre de `lucide-react` (`Search`, `ShoppingBag`, `Sun`, `Moon`, `Menu`, `X`, `ChevronLeft`, `Hexagon`).
+- Izquierda: logotipo Nexora con solo el icono `Hexagon` de lucide-react en brand, sin texto.
+- Centro: enlaces directos (`<a>`) a las páginas de producto por hash (`#/nphone`, `#/nexabook`, `#/nexatab`, `#/nexawatch`, `#/nexapods`) más Accesorios y Soporte. Sin mega-panel ni hover desplegable en escritorio.
+- Derecha: lupa (buscar) + bolsa (compra) + toggle de tema (Sol/Luna). Iconos siempre de `lucide-react` (`Search`, `ShoppingBag`, `Sun`, `Moon`, `Menu`, `X`, `ChevronLeft`, `Hexagon`).
 
-Cada enlace abre su menú desde `src/content/site/navMenus.content.js`:
-
-- Escritorio: mega-panel de tres columnas (Explorar / Comprar / Más de) bajo el header; abre con hover (`onMouseEnter`, cierra con `onMouseLeave` del header) y también con clic/foco para táctil y teclado; se cierra con Escape, clic fuera o al navegar.
-- Móvil (< `--header-mobile-breakpoint`): botón hamburguesa abre overlay a pantalla completa (`position: fixed`, `role="dialog"`) con topbar propia (logo o atrás + cerrar), enlaces en grande con separadores y subvista por producto (etiquetas pequeñas + enlaces destacados + enlaces rápidos). Bloquea el scroll con `body overflow hidden`.
+En móvil (< `--header-mobile-breakpoint`): botón hamburguesa abre overlay a pantalla completa (`position: fixed`, `role="dialog"`) con topbar propia (solo icono o atrás + cerrar), enlaces en grande sin líneas separadoras y subvista por producto desde `src/content/site/navMenus.content.js`. Bloquea el scroll con `body overflow hidden`.
 
 **Prohibido `filter`, `backdrop-filter` o `transform` en ancestros de un `fixed`**: crean bloque contenedor y rompen el overlay móvil. Por eso la topbar es sólida.
 
@@ -177,13 +174,19 @@ Cada enlace abre su menú desde `src/content/site/navMenus.content.js`:
 
 Tres variantes, todas en `src/sections/Hero/`:
 
-- `.hero--classic` (título + descripción + botones + imagen): **sin margin ni padding inferior** (`--hero-classic-padding-bottom: 0`), solo lados y arriba. Para NPhone, NexaBook, NexaTab y NexaPods. Las secciones se apilan sin separación (`--hero-section-gap: 0`).
-- `.hero--upcoming` (título + descripción + nota de lanzamiento + botones + imagen).
+- `.hero--classic` (título + descripción + botones + imagen): **sin margin ni padding inferior** (`--hero-classic-padding-bottom: 0`), solo lados y arriba. Para NPhone, NexaBook, NexaTab y NexaPods.
+- `.hero--upcoming` (título + descripción + nota de lanzamiento + botones + imagen). Usa el mismo fondo que las demás (`--hero-upcoming-bg: var(--color-surface)`); no hay variante clara/oscura por contenido.
 - `.hero--watch` (título + imagen + descripción + botones).
+
+Entre heroes hay una mini separación con **margin** (`.home > .hero + .hero { margin-top: var(--hero-stack-gap) }`), nunca con `gap`, para distinguir cada hero.
 
 Los tres responden al tema global mediante tokens semánticos (`--hero-*-bg`, `--hero-*-title`, etc. en `tokens.hero.css`): nada de fondos fijos oscuros/claros.
 
 Imágenes: hasta tener activos propios, solo Unsplash (`images.unsplash.com` con `?q=80&w=1800&auto=format&fit=crop`) con `alt` descriptivo en español desde el content. Nada de Pinterest con hotlink inestable.
+
+### Páginas de producto (referencia Apple/Mac)
+
+Cada familia (NPhone, NexaBook, NexaTab, NexaWatch, NexaPods) tiene su página base en `src/pages/Product/`, con routing por hash (`#/nphone`, etc. resuelto en `App.jsx` con `getRouteProductId`). Lo primero que se ve es el selector de familia `src/sections/FamilyNav/`: título grande a la izquierda + tira horizontal con scroll (`overflow-x: auto`, `scroll-snap`) de modelos del catálogo (base, Plus, Ultra, Max donde aplique) más Comparar, Ayuda para elegir y Accesorios. Iconos lucide mapeados por clave (`smartphone`, `laptop`, `tablet`, `watch`, `headphones`, `compare`, `help`, `bag`); etiqueta `Nuevo` en `--family-nav-tag`. Tokens en `tokens.family-nav.css`.
 
 ### Pie (estética Nexora, referencia Apple)
 
@@ -312,7 +315,7 @@ El diseño evita la columna centrada de ancho fijo. Se compone con:
 ## 6. Contenido
 
 1. **Ningún texto visible en el JSX.** Todo el copy vive en `src/content/`, organizado por dominio (`site/`, `home/`, y un directorio por página nueva). **Cada sección, layout y componente tiene su propio `.js` de contenido** (p. ej. `header.content.js`, `navMenus.content.js`, `footer.content.js`, `heroNPhone.content.js`): el JSX solo importa y renderiza.
-2. Estructura de carpetas: `src/components/` (piezas: BrandTitle), `src/layouts/` (Header, Footer), `src/sections/` (Hero), `src/pages/` (Home). Nada de layouts dentro de `components/`.
+2. Estructura de carpetas: `src/components/` (piezas: BrandTitle), `src/layouts/` (Header, Footer), `src/sections/` (Hero, FamilyNav), `src/pages/` (Home, Product), `src/content/products/` (un `.content.js` por familia: base/Plus/Ultra/Max según catálogo). Nada de layouts dentro de `components/`.
 2. Los iconos vienen de `lucide-react`. Los logotipos de marca (redes sociales) siguen siendo SVG en línea porque la librería los retiró.
 3. Los datos de producto (versión, estado, gamas) son declarativos y se derivan, no se repiten en varios sitios.
 4. Todo texto de interfaz, **en español**.

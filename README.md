@@ -14,11 +14,11 @@ Responsabilidad única: presentar el catálogo oficial (skill `product-catalog`)
 src/
   components/  BrandTitle/
   layouts/     Header/ Footer/
-  sections/    Hero/
-  content/     site/ home/
+  sections/    Hero/ FamilyNav/
+  content/     site/ home/ products/
   hooks/       useTheme.js
-  pages/       Home/
-  styles/      tokens.css tokens.hero.css tokens.header.css tokens.footer.css base.css
+  pages/       Home/ Product/
+  styles/      tokens.css tokens.hero.css tokens.header.css tokens.footer.css tokens.family-nav.css base.css
 ```
 
 ## Componentes

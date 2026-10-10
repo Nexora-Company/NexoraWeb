@@ -1,0 +1,113 @@
+/* Nexora — base: fondo, tipografía raíz, enlaces, utilidades tipográficas. */
+
+body {
+	background: var(--bg);
+	color: var(--ink);
+	font-family: var(--font-sans);
+	font-size: var(--fs-base);
+	letter-spacing: var(--ls-body);
+	transition:
+		background-color var(--dur-mid) var(--ease),
+		color var(--dur-mid) var(--ease);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-display);
+	letter-spacing: var(--ls-title);
+	text-wrap: balance;
+}
+
+p {
+	text-wrap: pretty;
+}
+
+a {
+	color: inherit;
+	transition: color var(--dur-fast) var(--ease);
+}
+
+strong {
+	font-weight: 600;
+}
+
+code,
+kbd,
+samp {
+	font-family: var(--font-mono);
+	font-size: 0.9em;
+}
+
+/* Utilidades tipográficas compartidas */
+.display-1 {
+	font: var(--text-display-1);
+	letter-spacing: var(--ls-display);
+}
+.display-2 {
+	font: var(--text-display-2);
+	letter-spacing: var(--ls-display);
+}
+.display-3 {
+	font: var(--text-display-3);
+	letter-spacing: var(--ls-display);
+}
+.title {
+	font: var(--text-title);
+}
+.lead {
+	font: var(--text-lead);
+	color: var(--ink-2);
+	text-wrap: pretty;
+}
+.mono {
+	font: var(--text-mono);
+	letter-spacing: var(--ls-mono);
+	color: var(--ink-3);
+}
+.muted {
+	color: var(--ink-2);
+}
+.dim {
+	color: var(--ink-3);
+}
+
+/* Enlaces de texto con la firma Nexora: subrayado que crece desde la izquierda */
+.link {
+	position: relative;
+	color: var(--brand);
+	font-weight: 500;
+	white-space: nowrap;
+}
+.link::after {
+	content: '';
+	position: absolute;
+	inset-inline: 0;
+	bottom: -0.1em;
+	height: 1px;
+	background: currentColor;
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform var(--dur-mid) var(--ease);
+}
+.link:hover::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+.skip-link {
+	position: absolute;
+	inset-inline-start: var(--gutter);
+	inset-block-start: -100%;
+	z-index: 100;
+	padding: 0.75rem 1.25rem;
+	background: var(--brand);
+	color: var(--brand-on);
+	border-radius: var(--r-sm);
+	font: var(--text-mono-label);
+	transition: inset-block-start var(--dur-fast) var(--ease);
+}
+.skip-link:focus-visible {
+	inset-block-start: 0.75rem;
+}

@@ -1,0 +1,411 @@
+/* Nexora — primitivas: antetítulo, botones, tarjetas, ledger, datos, código. */
+
+/* Antetítulo mono con índice de sección. La firma documental de Nexora. */
+.eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	font: var(--text-mono-label);
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+.eyebrow::before {
+	content: '';
+	width: 1.75rem;
+	height: 1px;
+	background: var(--brand);
+}
+.eyebrow--plain::before {
+	display: none;
+}
+
+/* Botones */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	min-height: 2.75rem;
+	padding: 0.5rem 1.25rem;
+	border-radius: var(--r-full);
+	font-size: var(--fs-sm);
+	font-weight: 500;
+	letter-spacing: var(--ls-body);
+	transition:
+		background-color var(--dur-fast) var(--ease),
+		color var(--dur-fast) var(--ease),
+		border-color var(--dur-fast) var(--ease),
+		transform var(--dur-fast) var(--ease);
+}
+.btn:active {
+	transform: scale(0.98);
+}
+.btn--primary {
+	background: var(--brand);
+	color: var(--brand-on);
+}
+.btn--primary:hover {
+	background: var(--brand-2);
+}
+.btn--secondary {
+	border: 1px solid var(--line);
+	color: var(--ink);
+	background: transparent;
+}
+.btn--secondary:hover {
+	border-color: var(--ink-3);
+}
+.btn--inverted {
+	background: var(--ink-inv);
+	color: var(--ink-inv-2);
+}
+.btn--inverted:hover {
+	background: #ffffff;
+}
+.btn--ghost {
+	min-height: 0;
+	padding: 0;
+	color: var(--brand);
+}
+
+/* Flecha de enlace tipo Apple */
+.arrow-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	color: var(--brand);
+	font-size: var(--fs-base);
+	font-weight: 500;
+}
+.arrow-link svg {
+	transition: transform var(--dur-mid) var(--ease);
+}
+.arrow-link:hover svg {
+	transform: translateX(3px);
+}
+
+/* Tarjeta de catálogo */
+.card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: clamp(1.5rem, 2.5vw, 2.25rem);
+	min-height: 100%;
+	transition: background-color var(--dur-mid) var(--ease);
+}
+.card--lined {
+	padding-inline: 0;
+	padding-block-start: 1.5rem;
+	border-block-start: 1px solid var(--line);
+}
+a.card:hover {
+	background: var(--brand-veil);
+}
+a.card--lined:hover {
+	background: transparent;
+	color: var(--brand);
+}
+.card__eyebrow {
+	font: var(--text-mono-label);
+	text-transform: uppercase;
+	color: var(--accent, var(--ink-3));
+}
+.card__title {
+	font: var(--text-display-3);
+	letter-spacing: var(--ls-display);
+}
+.card__text {
+	color: var(--ink-2);
+	font-size: var(--fs-base);
+}
+.card__meta {
+	margin-block-start: auto;
+	padding-block-start: 1rem;
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+	border-block-start: 1px solid var(--line-soft);
+	font: var(--text-mono);
+	color: var(--ink-3);
+}
+
+/* Ledger: tabla de especificaciones sin bordes, solo filetes */
+.ledger {
+	border-block-start: 1px solid var(--line);
+}
+.ledger__row {
+	display: grid;
+	grid-template-columns: minmax(9rem, 1fr) 2fr;
+	gap: 1rem;
+	padding-block: 0.9rem;
+	border-block-end: 1px solid var(--line-soft);
+	font-size: var(--fs-sm);
+}
+.ledger__key {
+	color: var(--ink-3);
+	font: var(--text-mono);
+	text-transform: uppercase;
+	letter-spacing: var(--ls-mono);
+}
+.ledger__value {
+	color: var(--ink);
+}
+.band--onyx .ledger,
+.band--onyx .ledger__row {
+	border-color: var(--line-inv-soft);
+}
+.band--onyx .ledger__key {
+	color: var(--ink-inv-3);
+}
+.band--onyx .ledger__value {
+	color: var(--ink-inv);
+}
+
+/* Cifras */
+.figure {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	padding-block: clamp(1.5rem, 3vw, 2.5rem);
+}
+.figure__value {
+	font-family: var(--font-display);
+	font-size: clamp(2.25rem, 1.4rem + 2.6vw, 3.75rem);
+	font-weight: 500;
+	letter-spacing: var(--ls-display);
+	line-height: 1;
+	font-variant-numeric: tabular-nums;
+}
+.figure__label {
+	font: var(--text-mono-label);
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+
+/* Lista con filete (no viñetas genéricas) */
+.ruled {
+	border-block-start: 1px solid var(--line);
+}
+.ruled__item {
+	border-block-end: 1px solid var(--line-soft);
+}
+.band--onyx .ruled,
+.band--onyx .ruled__item {
+	border-color: var(--line-inv-soft);
+}
+
+/* Chips mono */
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.25rem 0.6rem;
+	border: 1px solid var(--line);
+	border-radius: var(--r-full);
+	font: var(--text-mono);
+	color: var(--ink-2);
+	white-space: nowrap;
+}
+.chip--brand {
+	border-color: color-mix(in srgb, var(--brand) 40%, transparent);
+	color: var(--brand);
+	background: var(--brand-veil);
+}
+
+/* Bloque de código */
+.code {
+	border: 1px solid var(--line);
+	border-radius: var(--r-md);
+	background: var(--bg-quiet);
+	overflow-x: auto;
+	padding: 1.25rem 1.5rem;
+	font-family: var(--font-mono);
+	font-size: var(--fs-sm);
+	line-height: 1.7;
+	tab-size: 2;
+}
+.band--onyx .code {
+	background: rgb(255 255 255 / 0.04);
+	border-color: var(--line-inv-soft);
+}
+.code .k {
+	color: var(--brand);
+}
+
+/* Imagen/figura de producto con halo de acento */
+.halo {
+	position: relative;
+	isolation: isolate;
+}
+.halo::after {
+	content: '';
+	position: absolute;
+	inset-inline: 12%;
+	inset-block-end: 0;
+	aspect-ratio: 2 / 1;
+	background: radial-gradient(
+		ellipse at center,
+		color-mix(in srgb, var(--accent, var(--brand)) 42%, transparent),
+		transparent 68%
+	);
+	filter: blur(28px);
+	z-index: -1;
+}
+
+/* Details / FAQ */
+.faq {
+	border-block-start: 1px solid var(--line);
+}
+.faq__item {
+	border-block-end: 1px solid var(--line-soft);
+}
+.faq__q {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+	padding-block: 1.25rem;
+	font-weight: 500;
+	text-align: start;
+}
+.faq__q::after {
+	content: '+';
+	font-family: var(--font-mono);
+	color: var(--brand);
+	transition: transform var(--dur-mid) var(--ease);
+}
+.faq__item[open] .faq__q::after {
+	transform: rotate(45deg);
+}
+.faq__a {
+	padding-block-end: 1.5rem;
+	color: var(--ink-2);
+	max-width: var(--prose);
+}
+
+/* Tabla de precios */
+.plans {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1px;
+	background: var(--line);
+	border: 1px solid var(--line);
+}
+@media (max-width: 60rem) {
+	.plans {
+		grid-template-columns: 1fr;
+	}
+}
+.plan {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	padding: clamp(1.75rem, 3vw, 2.5rem);
+	background: var(--bg);
+}
+.plan--feature {
+	background: var(--bg-onyx);
+	color: var(--ink-inv);
+}
+.plan--feature .price,
+.plan--feature .plan__name {
+	color: var(--ink-inv);
+}
+.plan--feature .muted,
+.plan--feature .plan__desc {
+	color: var(--ink-inv-2);
+}
+.plan--feature .chip {
+	border-color: var(--line-inv);
+	color: var(--ink-inv-2);
+}
+.plan__name {
+	font: var(--text-title);
+}
+.plan__price {
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 1.5rem + 1.6vw, 2.75rem);
+	letter-spacing: var(--ls-display);
+	font-variant-numeric: tabular-nums;
+}
+.plan__desc {
+	color: var(--ink-2);
+	font-size: var(--fs-sm);
+}
+.plan__list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	font-size: var(--fs-sm);
+	color: var(--ink-2);
+}
+.plan--feature .plan__list {
+	color: var(--ink-inv-2);
+}
+.plan__list li {
+	display: flex;
+	gap: 0.6rem;
+	align-items: baseline;
+}
+.plan__list li::before {
+	content: '—';
+	color: var(--brand);
+	flex: none;
+}
+.plan__foot {
+	margin-block-start: auto;
+	padding-block-start: 0.5rem;
+}
+
+/* Estado de servicio */
+.uptime {
+	display: flex;
+	gap: 2px;
+	height: 1.75rem;
+	align-items: flex-end;
+}
+.uptime__tick {
+	flex: 1;
+	min-width: 2px;
+	background: var(--brand);
+	border-radius: 1px;
+}
+.uptime__tick--ok {
+	background: color-mix(in srgb, var(--accent-audio) 70%, var(--ink-3));
+}
+
+/* Marca / monograma */
+.mark {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+}
+.mark__glyph {
+	flex: none;
+}
+.mark__word {
+	font-family: var(--font-display);
+	font-size: 1.0625rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+/* Aparición al hacer scroll */
+.reveal {
+	opacity: 0;
+	transform: translateY(14px);
+	transition:
+		opacity var(--dur-slow) var(--ease-out),
+		transform var(--dur-slow) var(--ease-out);
+}
+.reveal.is-visible {
+	opacity: 1;
+	transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	.reveal {
+		opacity: 1;
+		transform: none;
+	}
+}

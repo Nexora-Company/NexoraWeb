@@ -1,0 +1,146 @@
+/* Nexora — tokens base. Paleta, tema, tipografía, espaciado, motion, layout.
+   Ningún componente escribe un valor literal de color, radio o duración. */
+
+:root {
+	color-scheme: light;
+
+	/* Superficies */
+	--bg: #ffffff;
+	--bg-soft: #f5f5f7;
+	--bg-quiet: #fafafa;
+	--bg-onyx: #0a0a0c;
+	--bg-onyx-2: #141417;
+
+	/* Tinta */
+	--ink: #0a0a0c;
+	--ink-2: #56565f;
+	--ink-3: #86868f;
+	--ink-inv: #ffffff;
+	--ink-inv-2: #a1a1aa;
+	--ink-inv-3: #6e6e78;
+
+	/* Reglas */
+	--line: rgb(10 10 12 / 0.1);
+	--line-soft: rgb(10 10 12 / 0.06);
+	--line-inv: rgb(255 255 255 / 0.14);
+	--line-inv-soft: rgb(255 255 255 / 0.08);
+
+	/* Marca */
+	--brand: #a50021;
+	--brand-2: #84001a;
+	--brand-inv: #ff453a;
+	--brand-veil: rgb(165 0 33 / 0.07);
+	--brand-veil-inv: rgb(255 69 58 / 0.14);
+	--brand-on: #ffffff;
+	/* Dentro de una banda onyx el acento es siempre el rojo brillante. */
+	--brand-on-onyx: #ff453a;
+	--brand-on-onyx-hover: #ff6a5f;
+
+	/* Familias del catálogo — un acento por familia, nunca en el componente */
+	--accent-pc: #6e6e73;
+	--accent-mobile: #a50021;
+	--accent-audio: #30d158;
+	--accent-wearables: #ff9f0a;
+	--accent-home: #64d2ff;
+	--accent-software: #0891b2;
+
+	/* Tipografía */
+	--font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+	--fs-2xs: 0.6875rem;
+	--fs-xs: 0.75rem;
+	--fs-sm: 0.8125rem;
+	--fs-base: 1rem;
+	--fs-lg: 1.0625rem;
+	--fs-xl: 1.25rem;
+	--fs-2xl: 1.5rem;
+
+	--fs-display-1: clamp(2.75rem, 1.4rem + 5.2vw, 6rem);
+	--fs-display-2: clamp(2.25rem, 1.3rem + 3.6vw, 4.25rem);
+	--fs-display-3: clamp(1.75rem, 1.2rem + 2.1vw, 2.875rem);
+	--fs-title: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+	--fs-lead: clamp(1.0625rem, 1rem + 0.45vw, 1.3125rem);
+	--fs-mono-label: var(--fs-2xs);
+
+	--lh-tight: 1.02;
+	--lh-snug: 1.14;
+	--lh-title: 1.2;
+	--lh-body: 1.55;
+	--lh-prose: 1.68;
+
+	--ls-display: -0.035em;
+	--ls-title: -0.022em;
+	--ls-body: -0.011em;
+	--ls-mono: 0.08em;
+
+	/* Shorthands */
+	--text-display-1:
+		500 var(--fs-display-1) / var(--lh-tight) var(--font-display);
+	--text-display-2:
+		500 var(--fs-display-2) / var(--lh-tight) var(--font-display);
+	--text-display-3:
+		500 var(--fs-display-3) / 1.08 var(--font-display);
+	--text-title: 600 var(--fs-title) / var(--lh-title) var(--font-display);
+	--text-lead: 400 var(--fs-lead) / 1.45 var(--font-sans);
+	--text-body: 400 var(--fs-base) / var(--lh-body) var(--font-sans);
+	--text-mono: 400 var(--fs-xs) / 1.5 var(--font-mono);
+	--text-mono-label:
+		500 var(--fs-mono-label) / 1.4 var(--font-mono) var(--ls-mono);
+
+	/* Layout */
+	--container: 75rem;
+	--container-wide: 90rem;
+	--gutter: clamp(1.25rem, 4vw, 2.5rem);
+	--band-y: clamp(4.5rem, 9vw, 8.5rem);
+	--band-y-tight: clamp(3rem, 6vw, 5rem);
+	--prose: 68ch;
+
+	--header-h: 3.25rem;
+	--subnav-h: 2.75rem;
+
+	/* Radios */
+	--r-xs: 4px;
+	--r-sm: 8px;
+	--r-md: 12px;
+	--r-lg: 18px;
+	--r-xl: 28px;
+	--r-full: 999px;
+
+	/* Motion */
+	--dur-fast: 140ms;
+	--dur-mid: 240ms;
+	--dur-slow: 560ms;
+	--ease: cubic-bezier(0.32, 0.72, 0, 1);
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme='dark'] {
+	color-scheme: dark;
+
+	--bg: #0a0a0c;
+	--bg-soft: #141417;
+	--bg-quiet: #101013;
+	--bg-onyx: #000000;
+	--bg-onyx-2: #141417;
+
+	--ink: #f5f5f7;
+	--ink-2: #a1a1aa;
+	--ink-3: #7c7c86;
+	--ink-inv: #0a0a0c;
+	--ink-inv-2: #56565f;
+	--ink-inv-3: #86868f;
+
+	--line: rgb(255 255 255 / 0.14);
+	--line-soft: rgb(255 255 255 / 0.08);
+	--line-inv: rgb(10 10 12 / 0.16);
+	--line-inv-soft: rgb(10 10 12 / 0.08);
+
+	--brand: #ff453a;
+	--brand-2: #ff6a5f;
+	--brand-inv: #a50021;
+	--brand-veil: rgb(255 69 58 / 0.14);
+	--brand-veil-inv: rgb(165 0 33 / 0.16);
+	--brand-on: #0a0a0c;
+}

@@ -1,0 +1,25 @@
+# Build
+dist/
+build/
+.next/
+.turbo/
+.cache/
+
+# Dependencies
+node_modules/
+
+# Env
+.env*
+!.env.example
+
+# Package managers
+.pnpm-store/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

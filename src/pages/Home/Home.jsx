@@ -1,4 +1,4 @@
-import { Hero } from "../../components/Hero/Hero.jsx";
+import { Hero } from "../../sections/Hero/Hero.jsx";
 import { homeContent } from "../../content/home/home.content.js";
 import "./Home.css";
 

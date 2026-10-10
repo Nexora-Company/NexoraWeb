@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, Menu, Moon, Search, ShoppingBag, Sun, X } from "lucide-react";
+import { ChevronLeft, Hexagon, Menu, Moon, Search, ShoppingBag, Sun, X } from "lucide-react";
 import { headerContent } from "../../content/site/header.content.js";
 import { metaContent } from "../../content/site/meta.content.js";
 import { navMenusContent } from "../../content/site/navMenus.content.js";
@@ -48,19 +48,18 @@ export function Header({ theme, onToggleTheme }) {
   const mobileMenuContent = mobileMenu ? navMenusContent[mobileMenu] : null;
 
   return (
-    <header className="site-header" ref={rootRef}>
-      <div className="container site-header__inner">
+    <header
+      className="site-header"
+      ref={rootRef}
+      onMouseLeave={() => setOpenMenu(null)}
+    >
+      <div className="site-header__inner">
         <a
           className="site-header__logo"
           href={headerContent.logo.href}
           aria-label={headerContent.logo.ariaLabel}
         >
-          <img
-            className="site-header__mark"
-            src={headerContent.logo.mark.src}
-            alt={headerContent.logo.mark.alt}
-            aria-hidden={headerContent.logo.mark.alt === ""}
-          />
+          <Hexagon className="site-header__mark" aria-hidden="true" />
           {headerContent.logo.text}
         </a>
 
@@ -72,6 +71,8 @@ export function Header({ theme, onToggleTheme }) {
               className={`site-header__link ${openMenu === link.menuId ? "is-active" : ""}`}
               aria-expanded={openMenu === link.menuId}
               aria-haspopup="true"
+              onMouseEnter={() => setOpenMenu(link.menuId)}
+              onFocus={() => setOpenMenu(link.menuId)}
               onClick={() => setOpenMenu((prev) => (prev === link.menuId ? null : link.menuId))}
             >
               {link.label}
@@ -142,7 +143,10 @@ export function Header({ theme, onToggleTheme }) {
                 <ChevronLeft aria-hidden="true" />
               </button>
             ) : (
-              <span />
+              <span className="nav-overlay__top-logo">
+                <Hexagon aria-hidden="true" />
+                {headerContent.logo.text}
+              </span>
             )}
             <button type="button" className="nav-overlay__icon-btn" onClick={closeMobile} aria-label={headerContent.nav.closeLabel}>
               <X aria-hidden="true" />

@@ -1,8 +1,6 @@
-/* Tokens del header: vidrio esmerilado, alturas, iconos y menus. */
+/* Tokens del header: topbar solida full-bleed, iconos y menus. */
 
 :root {
-  --header-bg-alpha: 0.72;
-  --header-blur: var(--blur-lg);
   --header-link-size: var(--font-size-sm);
   --header-logo-size: var(--font-size-sm);
   --header-mark-size: 1.375rem;

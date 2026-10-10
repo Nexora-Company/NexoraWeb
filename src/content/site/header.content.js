@@ -3,10 +3,6 @@ export const headerContent = {
     text: "Nexora",
     href: "#inicio",
     ariaLabel: "Nexora, ir al inicio",
-    mark: {
-      src: "/icons/nexora-mark.svg",
-      alt: "",
-    },
   },
   nav: {
     ariaLabel: "Navegación principal",

@@ -9,6 +9,5 @@
   --footer-column-gap: var(--space-8);
   --footer-row-gap: var(--space-6);
   --footer-padding-block: var(--space-10);
-  --footer-notes-max: var(--max-width-prose);
   --footer-accordion-breakpoint: 48rem;
 }

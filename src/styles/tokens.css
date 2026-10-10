@@ -28,14 +28,13 @@
   --palette-brand-500: #a50021;
   --palette-brand-600: #84001a;
   --palette-brand-on-dark: #ff453a;
-  --palette-link: #0071e3;
-  --palette-link-dark: #2997ff;
+  --palette-brand-veil: rgb(165 0 33 / 0.08);
+  --palette-brand-veil-dark: rgb(255 69 58 / 0.14);
   --palette-ink-soft: #1d1d1f;
   --palette-mist: #e8e8ed;
   --palette-fog: #d7d7dc;
   --palette-ash: #a9a9b3;
   --palette-line: #d9d9de;
-  --palette-link-veil: rgb(0 113 227 / 0.08);
 
   /* Tema claro (defecto) */
   --color-background: var(--palette-neutral-50);
@@ -51,13 +50,16 @@
   --color-text-on-dark: var(--palette-white);
   --color-text-on-dark-muted: var(--palette-fog);
   --color-text-on-dark-faint: var(--palette-ash);
+  --color-brand: var(--palette-brand-500);
+  --color-brand-hover: var(--palette-brand-600);
   --color-brand-text: var(--palette-brand-500);
   --color-brand-text-hover: var(--palette-brand-600);
-  --color-link: var(--palette-link);
-  --color-focus-ring: var(--palette-link);
+  --color-brand-veil: var(--palette-brand-veil);
+  --color-link: var(--palette-brand-500);
+  --color-focus-ring: var(--palette-brand-500);
   --separator-color: var(--palette-neutral-150);
   --separator-color-strong: var(--palette-line);
-  --color-link-hover-veil: var(--palette-link-veil);
+  --color-link-hover-veil: var(--color-brand-veil);
   --glass-tint: 251 251 253;
   --glass-alpha: 0.72;
 
@@ -160,10 +162,13 @@ html[data-theme="dark"] {
   --color-text-primary: var(--palette-white);
   --color-text-secondary: var(--color-text-on-dark-muted);
   --color-text-tertiary: var(--color-text-on-dark-faint);
+  --color-brand: var(--palette-brand-500);
+  --color-brand-hover: var(--palette-brand-600);
   --color-brand-text: var(--palette-brand-on-dark);
   --color-brand-text-hover: var(--palette-brand-on-dark);
-  --color-link: var(--palette-link-dark);
-  --color-focus-ring: var(--palette-link-dark);
+  --color-brand-veil: var(--palette-brand-veil-dark);
+  --color-link: var(--palette-brand-on-dark);
+  --color-focus-ring: var(--palette-brand-on-dark);
   --separator-color: var(--palette-surface-500);
   --separator-color-strong: var(--palette-surface-600);
   --glass-tint: 10 10 12;
@@ -182,7 +187,9 @@ html[data-theme="dark"] {
     --color-text-tertiary: var(--color-text-on-dark-faint);
     --color-brand-text: var(--palette-brand-on-dark);
     --color-brand-text-hover: var(--palette-brand-on-dark);
-    --color-link: var(--palette-link-dark);
+    --color-brand-veil: var(--palette-brand-veil-dark);
+    --color-link: var(--palette-brand-on-dark);
+    --color-focus-ring: var(--palette-brand-on-dark);
     --separator-color: var(--palette-surface-500);
     --glass-tint: 10 10 12;
   }

@@ -53,7 +53,6 @@ export function Footer() {
           <a href={shop.retailerLink.href}>{shop.retailerLink.label}</a> {shop.suffix}{" "}
           <a href={shop.phoneLink.href}>{shop.phoneLink.label}</a>.
         </p>
-        <p className="site-footer__locale">{footerContent.locale}</p>
 
         <div className="site-footer__legal">
           <p>{footerContent.legal.copyright}</p>

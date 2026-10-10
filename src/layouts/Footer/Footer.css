@@ -6,7 +6,6 @@
 }
 
 .site-footer__notes {
-  max-width: var(--footer-notes-max);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -76,8 +75,7 @@
   color: var(--color-text-primary);
 }
 
-.site-footer__shop,
-.site-footer__locale {
+.site-footer__shop {
   margin: var(--space-4) 0 0;
 }
 

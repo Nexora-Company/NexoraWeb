@@ -1,6 +1,9 @@
 .home {
   display: flex;
   flex-direction: column;
-  gap: var(--hero-section-gap);
   background-color: var(--color-background);
+}
+
+.home > .hero + .hero {
+  margin-top: var(--hero-stack-gap);
 }

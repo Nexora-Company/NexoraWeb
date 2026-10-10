@@ -86,7 +86,7 @@ Base y titulares se cargan desde Google Fonts en `index.html` con `preconnect`. 
 
 ### La "N" en Gliker
 
-Todo titular de heroe cuyo producto empiece por `N` (NPhone, NexaBook, NexaTab, NexaWatch, NexaPods) envuelve su primera letra en `.brand-title__initial`, que usa `--font-family-display`. El resto del titular —incluidas palabras como `Ultra`, `Plus` o `Max`— sigue en `--font-family-tight`. Componente `BrandTitle`: recibe `text` y decide solo; el JSX nunca parte el texto a mano.
+Todo titular de heroe cuyo producto empiece por `N` (NPhone, NexaBook, NexaTab, NexaWatch, NexaPods) envuelve su primera letra en `.brand-title__initial`, que usa `--font-family-display`. Las palabras `Ultra`, `Max` y `Plus` (lista en `src/content/site/brandTitle.content.js`) van en `.brand-title__display`, también Gliker. El resto del titular sigue en `--font-family-tight`. Componente `BrandTitle`: recibe `text` y decide solo; el JSX nunca parte el texto a mano.
 
 ### Escala
 
@@ -160,18 +160,18 @@ Reglas: el desenfoque va entre **16 y 24px** (`--blur-lg: 20px`); el `saturate` 
 
 ### Navegación flotante
 
-`--header-height` (64px). El encabezado es fijo (`sticky`), con `backdrop-filter` y fondo translúcido. Estructura fija en tres zonas con `grid-template-columns: 1fr auto 1fr`:
+`--header-height` (64px). La topbar es sólida (`--color-surface`), sin blur ni translucidez, y full-bleed: ocupa todo el ancho con gutters laterales, sin `.container`. Estructura flex en tres zonas:
 
-- Izquierda: logotipo Nexora (SVG local `nexora-mark.svg` + texto). Texto y enlaces usan la misma familia y el mismo tamaño (`--header-logo-size` = `--header-link-size`).
-- Centro: enlaces de familias del catálogo (NPhone, NexaBook, NexaTab, NexaWatch, NexaPods) más Accesorios y Soporte.
-- Derecha: lupa (buscar) + bolsa (compra) + toggle de tema (Sol/Luna), con `justify-self: end`. Iconos siempre de `lucide-react` (`Search`, `ShoppingBag`, `Sun`, `Moon`, `Menu`, `X`, `ChevronLeft`).
+- Izquierda: logotipo Nexora (icono `Hexagon` de lucide-react en brand + texto). Texto y enlaces usan la misma familia y el mismo tamaño (`--header-logo-size` = `--header-link-size`).
+- Centro: enlaces de familias del catálogo (NPhone, NexaBook, NexaTab, NexaWatch, NexaPods) más Accesorios y Soporte, con `margin-inline: auto`.
+- Derecha: lupa (buscar) + bolsa (compra) + toggle de tema (Sol/Luna), con `margin-inline-start: auto` para quedar siempre pegadas al borde derecho. Iconos siempre de `lucide-react` (`Search`, `ShoppingBag`, `Sun`, `Moon`, `Menu`, `X`, `ChevronLeft`, `Hexagon`).
 
 Cada enlace abre su menú desde `src/content/site/navMenus.content.js`:
 
-- Escritorio: mega-panel de tres columnas (Explorar / Comprar / Más de) bajo el header; se cierra con Escape, clic fuera o al navegar.
-- Móvil (< `--header-mobile-breakpoint`): botón hamburguesa abre overlay a pantalla completa con los enlaces en grande; tocar uno abre su subvista (atrás + cerrar, grupos con etiquetas pequeñas y enlaces destacados). Bloquea el scroll con `body overflow hidden`.
+- Escritorio: mega-panel de tres columnas (Explorar / Comprar / Más de) bajo el header; abre con hover (`onMouseEnter`, cierra con `onMouseLeave` del header) y también con clic/foco para táctil y teclado; se cierra con Escape, clic fuera o al navegar.
+- Móvil (< `--header-mobile-breakpoint`): botón hamburguesa abre overlay a pantalla completa (`position: fixed`, `role="dialog"`) con topbar propia (logo o atrás + cerrar), enlaces en grande con separadores y subvista por producto (etiquetas pequeñas + enlaces destacados + enlaces rápidos). Bloquea el scroll con `body overflow hidden`.
 
-En móvil (< `--header-mobile-breakpoint`) los enlaces colapsan en un menú hamburguesa desplegable; las tres acciones de la derecha siempre visibles.
+**Prohibido `filter`, `backdrop-filter` o `transform` en ancestros de un `fixed`**: crean bloque contenedor y rompen el overlay móvil. Por eso la topbar es sólida.
 
 ### Hero de portada (estética Nexora, referencia Apple)
 

@@ -36,7 +36,7 @@
 	<div class="container container--wide header__bar">
 		<a class="mark" href={url(lang)} aria-label="Nexora">
 			<Logo size={20} />
-			<span class="mark__word">Nexora</span>
+			
 		</a>
 
 		<nav class="header__nav" aria-label="Principal">

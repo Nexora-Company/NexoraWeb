@@ -3,7 +3,7 @@
 	 * Marca de Nexora: monograma N geométrico con la diagonal en rojo de marca.
 	 * El glyph es el mismo en cabecera, hero, estado y pie.
 	 */
-	let { size = 22} = $props();
+	let { size = 22, title = 'Nexora' } = $props();
 </script>
 
 <svg
@@ -12,7 +12,7 @@
 	height={size}
 	viewBox="0 0 28 28"
 	role="img"
-	
+	aria-label={title}
 	fill="none"
 >
 

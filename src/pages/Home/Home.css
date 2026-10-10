@@ -1,9 +1,0 @@
-.home {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-background);
-}
-
-.home > .hero + .hero {
-  margin-top: var(--hero-stack-gap);
-}

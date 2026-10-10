@@ -1,0 +1,27 @@
+/* Tokens del hero: variantes classic (oscuro), upcoming (claro) y watch (oscuro).
+   El hero oscuro es intencional en ambos temas: no sigue al tema global. */
+
+:root {
+  --hero-section-gap: var(--space-4);
+  --hero-padding-block: var(--space-16);
+  --hero-padding-block-desktop: var(--space-20);
+  --hero-content-max: 52rem;
+  --hero-media-max: 72rem;
+  --hero-media-radius: var(--radius-2xl);
+  --hero-title-tracking: var(--letter-spacing-tight);
+
+  --hero-dark-bg: var(--palette-surface-300);
+  --hero-dark-bg-soft: var(--palette-surface-400);
+  --hero-dark-title: var(--palette-white);
+  --hero-dark-subtitle: var(--palette-mist);
+  --hero-dark-note: var(--color-text-on-dark-muted);
+
+  --hero-light-bg: var(--palette-neutral-50);
+  --hero-light-title: var(--palette-ink-soft);
+  --hero-light-subtitle: var(--palette-neutral-750);
+  --hero-light-note: var(--palette-neutral-600);
+
+  --hero-cta-gap: var(--space-3);
+  --hero-media-margin-top: var(--space-8);
+  --hero-media-aspect: 16 / 9;
+}

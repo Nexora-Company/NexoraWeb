@@ -23,3 +23,7 @@ node_modules/
 # OS
 .DS_Store
 Thumbs.db
+
+# SvelteKit
+.svelte-kit/
+build/

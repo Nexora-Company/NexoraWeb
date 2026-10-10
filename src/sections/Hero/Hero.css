@@ -52,28 +52,29 @@
   object-fit: cover;
 }
 
-/* Variante classic: fondo oscuro fijo, como imagen 1 */
+/* Variante classic: responde al tema; sin padding inferior, solo lados y arriba */
 .hero--classic {
-  background-color: var(--hero-dark-bg);
-  color: var(--hero-dark-title);
+  background-color: var(--hero-classic-bg);
+  color: var(--hero-classic-title);
+  padding-bottom: var(--hero-classic-padding-bottom);
 }
 
 .hero--classic .hero__subtitle {
-  color: var(--hero-dark-subtitle);
+  color: var(--hero-classic-subtitle);
 }
 
-/* Variante upcoming: fondo claro fijo, como imagen 2 */
+/* Variante upcoming: responde al tema */
 .hero--upcoming {
-  background-color: var(--hero-light-bg);
-  color: var(--hero-light-title);
+  background-color: var(--hero-upcoming-bg);
+  color: var(--hero-upcoming-title);
 }
 
 .hero--upcoming .hero__subtitle {
-  color: var(--hero-light-title);
+  color: var(--hero-upcoming-subtitle);
 }
 
 .hero--upcoming .hero__note {
-  color: var(--hero-light-note);
+  color: var(--hero-upcoming-note);
 }
 
 .hero--upcoming .hero__media img {
@@ -82,8 +83,8 @@
 
 /* Variante watch: titulo + imagen + descripcion + botones, como imagen 3 */
 .hero--watch {
-  background-color: var(--hero-dark-bg);
-  color: var(--hero-dark-title);
+  background-color: var(--hero-watch-bg);
+  color: var(--hero-watch-title);
 }
 
 .hero--watch .hero__content--top {
@@ -104,7 +105,7 @@
 }
 
 .hero--watch .hero__subtitle {
-  color: var(--hero-dark-subtitle);
+  color: var(--hero-watch-subtitle);
 }
 
 @media (min-width: 48rem) {

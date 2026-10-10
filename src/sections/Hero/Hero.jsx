@@ -1,4 +1,4 @@
-import { BrandTitle } from "../BrandTitle/BrandTitle.jsx";
+import { BrandTitle } from "../../components/BrandTitle/BrandTitle.jsx";
 import "./Hero.css";
 
 function HeroButtons({ buttons }) {

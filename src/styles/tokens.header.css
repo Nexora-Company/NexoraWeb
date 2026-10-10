@@ -1,13 +1,23 @@
-/* Tokens del header: vidrio esmerilado, alturas y medidas de iconos. */
+/* Tokens del header: vidrio esmerilado, alturas, iconos y menus. */
 
 :root {
   --header-bg-alpha: 0.72;
   --header-blur: var(--blur-lg);
   --header-link-size: var(--font-size-sm);
+  --header-logo-size: var(--font-size-sm);
+  --header-mark-size: 1.375rem;
   --header-link-gap: var(--space-5);
   --header-icon-size: 1.25rem;
-  --header-logo-height: 1.75rem;
-  --header-mobile-breakpoint: 56.25rem;
   --header-action-gap: var(--space-1);
   --header-action-size: 2.75rem;
+  --header-mobile-breakpoint: 56.25rem;
+
+  --nav-panel-bg: var(--color-surface-elevated);
+  --nav-panel-pad: var(--space-8);
+  --nav-group-label-size: var(--font-size-sm);
+  --nav-group-link-size: var(--font-size-2xl);
+  --nav-quick-link-size: var(--font-size-sm);
+  --nav-column-gap: var(--space-10);
+  --nav-overlay-link-size: var(--font-size-2xl);
+  --nav-overlay-quick-size: var(--font-size-base);
 }

@@ -10,7 +10,7 @@ export const heroNPhoneContent = {
     { label: "Comprar", href: "#comprar-nphone", style: "secondary" },
   ],
   image: {
-    src: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1800&auto=format&fit=crop",
+    src: "/banner-prueba.png",
     alt: "NPhone 27 Ultra en color grafito sobre fondo oscuro",
   },
 };

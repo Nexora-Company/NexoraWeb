@@ -10,7 +10,7 @@ export const heroUpcomingContent = {
     { label: "Ver precios", href: "#precios-nexatab", style: "secondary" },
   ],
   image: {
-    src: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=1800&auto=format&fit=crop",
+    src: "/banner-prueba.png",
     alt: "Persona sosteniendo la nueva NexaTab Ultra con la pantalla encendida",
   },
 };

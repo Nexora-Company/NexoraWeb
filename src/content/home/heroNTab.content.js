@@ -9,7 +9,7 @@ export const heroNTabContent = {
     { label: "Comprar", href: "#comprar-nexatab", style: "secondary" },
   ],
   image: {
-    src: "https://images.unsplash.com/photo-1561154464-82e9adf32764?q=80&w=1800&auto=format&fit=crop",
+    src: "/banner-prueba.png",
     alt: "NexaTab Plus con lápiz sobre una mesa de trabajo",
   },
 };

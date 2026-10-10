@@ -9,7 +9,7 @@ export const heroNBookContent = {
     { label: 'Comprar', href: '#comprar-nexabook', style: 'secondary' },
   ],
   image: {
-    src: 'https://i.pinimg.com/736x/56/85/72/568572f16a7df43726c9d1cce87ec94b.jpg',
+    src: '/banner-prueba.png',
     alt: 'NexaBook Ultra abierto sobre un escritorio minimalista',
   },
 }

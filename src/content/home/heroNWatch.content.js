@@ -4,7 +4,7 @@ export const heroNWatchContent = {
   theme: 'dark',
   title: 'NexaWatch Ultra',
   image: {
-    src: 'https://www.apple.com/v/homepage/images/apple-watch-series-12/a/hero_apple_watch_series_12__n9rln7bzvwya_large.jpg',
+    src: '/banner-prueba.png',
     alt: 'NexaWatch Ultra mostrando la esfera de frecuencia cardiaca',
   },
   subtitle: 'El sensor de frecuencia cardiaca más preciso en un wearable.',
